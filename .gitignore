@@ -7,7 +7,6 @@
 !copy_magic.py
 !precompile*.py
 !.clangd
-!.vscode/*
 !noya/*.hpp
 
 # 允许目录被追踪，以便其中的文件可以根据规则排除或包含

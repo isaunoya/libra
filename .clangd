@@ -1,6 +1,2 @@
 CompileFlags:
-<<<<<<< HEAD
-  Add: [-std=c++23, -DLOCAL, -I/Users/noya/libra/]
-=======
   Add: [-std=c++23, -Dlocal, -I/Users/noya/libra/]
->>>>>>> 00d27e6 (fixed)
