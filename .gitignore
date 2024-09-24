@@ -4,6 +4,7 @@
 # 不忽略 .gitignore 和 README.md
 !.gitignore
 !README.md
+<<<<<<< HEAD
 !copy_magic.py
 !precompile*.py
 !.clangd
@@ -11,4 +12,8 @@
 !noya/*.hpp
 
 # 允许目录被追踪，以便其中的文件可以根据规则排除或包含
+=======
+!*.hpp
+
+>>>>>>> 00d27e6 (fixed)
 !*/
