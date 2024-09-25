@@ -2,7 +2,7 @@
 #define NOYA_CHT_HPP 1
 
 #include <map>
-#include <noya/limit>
+#include <noya/limit.hpp>
 #include <set>
 #include <vector>
 

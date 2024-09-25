@@ -3,7 +3,7 @@
 
 #include <algorithm>
 #include <functional>
-#include <noya/sparsetable>
+#include <noya/sparsetable.hpp>
 #include <numeric>
 
 namespace noya {
