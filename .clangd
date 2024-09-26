@@ -1,2 +1,2 @@
 CompileFlags:
-  Add: [-std=c++23, -Dlocal, -I/Users/noya/libra/]
+  Add: [-std=c++20, -Dlocal, -I/Users/noya/libra/]
