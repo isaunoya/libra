@@ -5,7 +5,7 @@
 #include <vector>
 
 namespace noya {
-template <class T, auto op, auto e = T()> struct sparse_table {
+template <class T, auto op, T e = T()> struct sparse_table {
   static int highest_bit(unsigned x) {
     return x == 0 ? -1 : 31 - __builtin_clz(x);
   }
@@ -36,7 +36,7 @@ template <class T, auto op, auto e = T()> struct sparse_table {
   T prod(int l, int r) const {
     assert(0 <= l && l <= r && r <= n);
     if (l == r) {
-      return e();
+      return e;
     }
     int L = highest_bit(r - l);
     return op(ST[L][l], ST[L][r - (1 << L)]);
