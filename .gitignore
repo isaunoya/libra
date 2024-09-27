@@ -6,7 +6,7 @@
 !README.md
 !copy_magic.py
 !precompile*.py
-# !.clangd
+# !.clangd/
 !.vscode/*
 !noya/*.hpp
 
