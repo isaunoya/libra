@@ -13,13 +13,11 @@ struct fastlca {
                                     std::pair<int, int> b) {
     return std::min(a, b);
   }
-  // impossible
-  static std::pair<int, int> min_e() { return {-1, -1}; }
   int n;
   std::vector<int> dfn;
   std::vector<int> d;
   std::vector<int> siz;
-  sparse_table<std::pair<int, int>, min_op, min_e> ST;
+  sparse_table<std::pair<int, int>, min_op> ST;
   fastlca(const std::vector<std::vector<int>> &g = {}, const int &root = 0) {
     if (!g.empty())
       build(g, root);
