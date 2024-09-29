@@ -3,7 +3,7 @@
 
 #include <algorithm>
 #include <array>
-#include <noya/fastlca>
+#include <noya/fastlca.hpp>
 #include <utility>
 
 namespace noya {

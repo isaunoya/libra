@@ -4,7 +4,6 @@
 #if defined(local)
 #include "../my_template_compiled.hpp"
 #else
-#pragma GCC optimize("Ofast,unroll-loops")
 #include <bits/stdc++.h>
 using namespace std;
 #define debug(...) 42

@@ -3,7 +3,7 @@ import subprocess
 
 # 编译器和选项
 COMPILER = "g++-14"
-CXX_STANDARD = "-std=c++20"
+CXX_STANDARD = "-std=c++23"
 OPTIMIZATION = "-O2"
 WARNINGS = "-Wall"
 DEFINE = "-Dlocal"
