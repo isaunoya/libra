@@ -9,6 +9,7 @@
 #include "noya/hashmap.hpp"
 #include "noya/head.hpp"
 #include "noya/hld.hpp"
+#include "noya/hungarian.hpp"
 #include "noya/limit.hpp"
 #include "noya/online_z_algo.hpp"
 #include "noya/rnd.hpp"
