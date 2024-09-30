@@ -21,6 +21,7 @@ std::vector<int> random_permutation(int N) {
 std::vector<ull> random_hash_values(int N) {
   std::vector<ull> X(N);
   std::generate(X.begin(), X.end(), internal::gen_values);
+  return X;
 }
 std::vector<std::vector<int>> random_tree(int N) {
   std::vector<std::vector<int>> g(N);
