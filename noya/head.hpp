@@ -2,11 +2,45 @@
 #define NOYA_HEAD_HPP 1
 
 #if defined(local)
-#include "../my_template_compiled.hpp"
+#include "./noya/debug.hpp"
 #else
-#include <bits/stdc++.h>
-using namespace std;
 #define debug(...) 42
+#endif
+
+#include <algorithm>
+#include <array>
+#include <bitset>
+#include <cassert>
+#include <chrono>
+#include <cmath>
+#include <complex>
+#include <deque>
+#include <forward_list>
+#include <fstream>
+#include <functional>
+#include <iomanip>
+#include <ios>
+#include <iostream>
+#include <limits>
+#include <list>
+#include <map>
+#include <memory>
+#include <numeric>
+#include <optional>
+#include <queue>
+#include <random>
+#include <set>
+#include <sstream>
+#include <stack>
+#include <string>
+#include <tuple>
+#include <type_traits>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
+
+using namespace std;
 #define rep1(a) for (int i = 0; i < a; i++)
 #define rep2(i, a) for (int i = 0; i < a; i++)
 #define rep3(i, a, b) for (int i = a; i < b; i++)
@@ -33,7 +67,6 @@ const ll LNF = 1000000000000000000;
 #define all(x) begin(x), end(x)
 #define fi first
 #define se second
-#endif
 
 namespace noya {}
 
