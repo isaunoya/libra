@@ -6,6 +6,7 @@
 #else
 #define debug(...) 42
 #endif
+
 #include "bits/stdc++.h"
 
 using namespace std;
