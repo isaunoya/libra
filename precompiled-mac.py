@@ -15,7 +15,7 @@ SEARCH_DIR = "./"
 def generate_gch_files(directory):
     for root, _, files in os.walk(directory):
         for file in files:
-            if file.endswith("head.hpp") or file.endswith("all.hpp"):
+            if file.endswith("head.hpp") or file.endswith("all.hpp") or file.endswith("stdc++.h"):
                 header_file = os.path.join(root, file)
                 gch_file = f"{header_file}.gch"
                 

@@ -6,39 +6,7 @@
 #else
 #define debug(...) 42
 #endif
-
-#include <algorithm>
-#include <array>
-#include <bitset>
-#include <cassert>
-#include <chrono>
-#include <cmath>
-#include <complex>
-#include <deque>
-#include <forward_list>
-#include <fstream>
-#include <functional>
-#include <iomanip>
-#include <ios>
-#include <iostream>
-#include <limits>
-#include <list>
-#include <map>
-#include <memory>
-#include <numeric>
-#include <optional>
-#include <queue>
-#include <random>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <string>
-#include <tuple>
-#include <type_traits>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <vector>
+#include "bits/stdc++.h"
 
 using namespace std;
 #define rep1(a) for (int i = 0; i < a; i++)
@@ -54,10 +22,10 @@ template <typename T, typename T2> void cmin(T &x, const T2 &y) {
 template <typename T, typename T2> void cmax(T &x, const T2 &y) {
   x = x > y ? x : y;
 }
-using ll = long long;
+using ll = int64_t;
 using vi = vector<int>;
 using vl = vector<ll>;
-using ull = unsigned long long;
+using ull = uint64_t;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 template <class T> using vc = vector<T>;
