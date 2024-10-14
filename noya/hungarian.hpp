@@ -58,7 +58,7 @@ hungarian(std::vector<std::vector<T>> &C) {
   X.erase(X.begin());
   Y.erase(Y.begin());
   std::vector<int> match(N);
-  for (int i = 0; i < N; i++)
+  for (int i = 0; i < M; i++)
     match[P[i]] = i;
   match.erase(match.begin());
   for (auto &&i : match)
