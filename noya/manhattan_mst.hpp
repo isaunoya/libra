@@ -1,5 +1,5 @@
-#ifndef NOYA_MANHATTAN_MST
-#define NOYA_MANHATTAN_MST 1
+#ifndef NOYA_MANHATTAN_MST_HPP
+#define NOYA_MANHATTAN_MST_HPP 1
 
 #include <algorithm>
 #include <map>
@@ -39,4 +39,4 @@ std::vector<std::tuple<T, int, int>> manhattan_mst(std::vector<T> xs,
   return ret;
 }
 
-#endif // NOYA_MANHATTAN_MST
+#endif // NOYA_MANHATTAN_MST_HPP
