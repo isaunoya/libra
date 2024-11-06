@@ -8,8 +8,8 @@
 #include <vector>
 
 template <typename T>
-std::vector<std::tuple<T, int, int>> manhattan_mst(std::vector<T> xs,
-                                                   std::vector<T> ys) {
+std::vector<std::tuple<T, int, int>> manhattan_edges(std::vector<T> xs,
+                                                     std::vector<T> ys) {
   const int n = xs.size();
   std::vector<int> idx(n);
   std::iota(idx.begin(), idx.end(), 0);
@@ -37,6 +37,18 @@ std::vector<std::tuple<T, int, int>> manhattan_mst(std::vector<T> xs,
   }
   std::sort(ret.begin(), ret.end());
   return ret;
+}
+
+template <typename PointType>
+auto manhattan_edges(const std::vector<PointType> &points) {
+  assert(!points.empty());
+  using CoordType = std::decay_t<decltype(std::get<0>(points[0]))>;
+  std::vector<CoordType> xs, ys;
+  for (const auto &point : points) {
+    xs.push_back(std::get<0>(point));
+    ys.push_back(std::get<1>(point));
+  }
+  return manhattan_edges(xs, ys);
 }
 
 #endif // NOYA_MANHATTAN_MST_HPP
