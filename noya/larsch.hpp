@@ -1,6 +1,7 @@
 #ifndef NOYA_LARSCH_HPP
 #define NOYA_LARSCH_HPP 1
 
+// https://noshi91.github.io/Library/algorithm/larsch.cpp.html
 #include <functional>
 #include <memory>
 #include <vector>
