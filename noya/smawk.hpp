@@ -1,11 +1,11 @@
 #ifndef NOYA_SMAWK_HPP
 #define NOYA_SMAWK_HPP 1
 
+// https://noshi91.github.io/Library/algorithm/smawk.cpp.html
 #include <functional>
 #include <numeric>
 #include <vector>
 
-// https://noshi91.github.io/Library/algorithm/smawk.cpp.html
 template <class Select>
 std::vector<int> smawk(const int row_size, const int col_size,
                        const Select &select) {
