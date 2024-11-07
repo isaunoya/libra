@@ -1,6 +1,8 @@
 #ifndef NOYA_MANHATTAN_MST_HPP
 #define NOYA_MANHATTAN_MST_HPP 1
 
+#include "noya/mst.hpp"
+
 #include <algorithm>
 #include <map>
 #include <numeric>
