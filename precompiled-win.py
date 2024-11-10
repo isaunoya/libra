@@ -7,7 +7,7 @@ CXX_STANDARD = "-std=c++23"
 OPTIMIZATION = "-O2"
 WARNINGS = "-Wall"
 DEFINE = "-Dlocal"
-INCLUDE_DIR = "-ID:/cp/libra"  # 去掉了引号转义
+INCLUDE_DIR = "-IC:/Users/lenovo/Desktop/libra"  # 去掉了引号转义
 
 # 目录设置
 SEARCH_DIR = "./"
