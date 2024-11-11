@@ -6,12 +6,17 @@
 #include <vector>
 
 namespace noya {
+static int64_t base_t = internal::gen_values();
 template <class T, class S> struct hash_array {
   int n;
   std::vector<T> H;
   std::vector<T> pw;
-  T base = T(internal::gen_values());
+  const T base = T(base_t);
   hash_array(std::vector<S> &a) { build(a); }
+  hash_array(std::string &a) {
+    std::vector<S> a0(a.begin(), a.end());
+    build(a0);
+  }
   hash_array() {}
 
   void build(std::vector<S> &a) {
@@ -42,8 +47,13 @@ template <class A, class B, class S> struct double_hash_array {
   hash_array<B, S> B_hash_array;
   double_hash_array(std::vector<S> &a) { build(a); }
   double_hash_array() {}
+  double_hash_array(std::string &a) {
+    std::vector<S> a0(a.begin(), a.end());
+    build(a0);
+  }
 
   void build(std::vector<S> &a) {
+    n = (int)a.size();
     A_hash_array.build(a);
     B_hash_array.build(a);
   }
@@ -52,7 +62,41 @@ template <class A, class B, class S> struct double_hash_array {
     return make_pair(A_hash_array.prod(l, r), B_hash_array.prod(l, r));
   }
 };
-
 }; // namespace noya
+
+using mint1 = atcoder::modint1000000007;
+using mint2 = atcoder::modint998244353;
+using mint3 = uint64_t;
+
+template <class T> int lcp(T &A, int i, T &B, int j) {
+  int n = A.n;
+  int m = B.n;
+
+  int l = 0;
+  int r = std::min(n - i, m - j) + 1;
+
+  while (r - l > 1) {
+    int m = (l + r) / 2;
+    if (A.prod(i, i + m) == B.prod(j, j + m))
+      l = m;
+    else
+      r = m;
+  }
+  return l;
+}
+
+template <class T> int lcs(T &A, int i, T &B, int j) {
+  int l = 0;
+  int r = std::min(i + 1, j + 1) + 1;
+
+  while (r - l > 1) {
+    int m = (l + r) / 2;
+    if (A.prod(i + 1 - m, i + 1) == B.prod(j + 1 - m, j + 1))
+      l = m;
+    else
+      r = m;
+  }
+  return l;
+}
 
 #endif // NOYA_ROLLINGHASH_HPP
