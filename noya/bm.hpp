@@ -1,8 +1,10 @@
 #ifndef NOYA_BM_HPP
 #define NOYA_BM_HPP 1
 
+#include <algorithm>
 #include <bitset>
 #include <cassert>
+#include <random>
 #include <vector>
 
 namespace noya {
@@ -87,6 +89,57 @@ template <typename BS> struct BipartiteMatching_Dense {
     return {left, right};
   }
 };
+
+// https://judge.yosupo.jp/submission/233075
+struct HopcroftKarp {
+  std::vector<int> g, l, r;
+  int ans;
+  HopcroftKarp(int n, int m, std::vector<std::pair<int, int>> &e)
+      : g(e.size()), l(n, -1), r(m, -1), ans(0) {
+    std::mt19937 rng(0);
+    std::shuffle(e.begin(), e.end(), rng);
+    std::vector<int> deg(n + 1), a, p, q(n);
+    for (auto &[x, y] : e)
+      deg[x]++;
+    for (int i = 1; i <= n; i++)
+      deg[i] += deg[i - 1];
+    for (auto &[x, y] : e)
+      g[--deg[x]] = y;
+    for (bool match = true; match;) {
+      a.assign(n, -1);
+      p.assign(n, -1);
+      int t = 0;
+      match = false;
+      for (int i = 0; i < n; i++)
+        if (l[i] == -1)
+          q[t++] = a[i] = p[i] = i;
+      for (int i = 0; i < t; i++) {
+        int x = q[i];
+        if (~l[a[x]])
+          continue;
+        for (int j = deg[x]; j < deg[x + 1]; j++) {
+          int y = g[j];
+          if (r[y] == -1) {
+            while (~y) {
+              r[y] = x;
+              std::swap(l[x], y);
+              x = p[x];
+            }
+            match = true;
+            ans++;
+            break;
+          }
+          if (p[r[y]] == -1) {
+            q[t++] = y = r[y];
+            p[y] = x;
+            a[y] = a[x];
+          }
+        }
+      }
+    }
+  }
+};
+
 } // namespace noya
 
 #endif // NOYA_BM_HPP
