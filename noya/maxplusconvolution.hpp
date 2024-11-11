@@ -41,7 +41,7 @@ std::vector<T> concave_minplus_convolution(const std::vector<T> &a,
   for (int i = 0; i < m; i++) {
     negative_b[i] = -b[i];
   }
-  auto negative_c = concave_maxplus_convolution(a, b);
+  auto negative_c = concave_maxplus_convolution(negative_a, negative_b);
   std::vector<T> c(n + m - 1);
   for (int i = 0; i < n + m - 1; i++)
     c[i] = -negative_c[i];
