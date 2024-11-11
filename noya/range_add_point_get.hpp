@@ -3,10 +3,11 @@
 
 #include "noya/point_add_range_sum.hpp"
 
+// un-tested
 template <class T, class C = noya::fenwick<T>> struct range_add_point_get {
   int N;
   C ST;
-  range_add_point_get(int _N) : C(_N), N(_N) {}
+  range_add_point_get(int _N) : ST(_N), N(_N) {}
 
   void range_add(int l, int r, T v) {
     ST.add(l, v);
