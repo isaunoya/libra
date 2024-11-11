@@ -10,6 +10,7 @@
 !noya/*.hpp
 !bits/*.h
 !testlib.h
+!gen_all.py
 
 # 允许目录被追踪，以便其中的文件可以根据规则排除或包含
 
