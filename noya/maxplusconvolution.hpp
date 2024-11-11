@@ -6,6 +6,7 @@
 #include "functional"
 #include "vector"
 
+// @b concave
 template <class T>
 std::vector<T> concave_maxplus_convolution(const std::vector<T> &a,
                                            const std::vector<T> &b) {
@@ -28,6 +29,7 @@ std::vector<T> concave_maxplus_convolution(const std::vector<T> &a,
   return c;
 }
 
+// @b concave
 template <class T>
 std::vector<T> concave_minplus_convolution(const std::vector<T> &a,
                                            const std::vector<T> &b) {
