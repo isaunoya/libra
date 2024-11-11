@@ -1,21 +1,22 @@
 #ifndef NOYA_DIAM_HPP
 #define NOYA_DIAM_HPP 1
 
+#include <noya/fastlca.hpp>
+
 #include <algorithm>
 #include <array>
-#include <noya/fastlca.hpp>
 #include <utility>
 
 namespace noya {
 // don't forget to build.
 struct dist {
   fastlca *lca = nullptr;
-  
+
   dist() = default;
   explicit dist(fastlca &l) { build(l); }
 
   void build(fastlca &l) { lca = &l; }
-  
+
   int64_t operator()(int a, int b) const {
     assert(lca != nullptr);
     return lca->distance(a, b);

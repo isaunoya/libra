@@ -1,9 +1,10 @@
 #ifndef NOYA_FASTLCA_HPP
 #define NOYA_FASTLCA_HPP 1
 
+#include <noya/sparsetable.hpp>
+
 #include <algorithm>
 #include <functional>
-#include <noya/sparsetable.hpp>
 #include <numeric>
 
 namespace noya {
@@ -16,24 +17,40 @@ struct fastlca {
   int n;
   std::vector<int> dfn;
   std::vector<int> d;
+  std::vector<int64_t> len;
   std::vector<int> siz;
   sparse_table<std::pair<int, int>, min_op> ST;
-  fastlca(const std::vector<std::vector<int>> &g = {}, const int &root = 0) {
+  bool weighted;
+
+  std::vector<int> fa;
+
+  template <class T>
+  fastlca(const std::vector<T> &g = {}, const bool &_weighted = false,
+          const int &root = 0) {
+    weighted = _weighted;
     if (!g.empty())
-      build(g, root);
+      build(g, weighted, root);
   };
 
-  void build(const std::vector<std::vector<int>> &g = {}, const int &root = 0) {
+  template <class T>
+  void build(const std::vector<std::vector<T>> &g = {},
+             const bool &weighted = false, const int &root = 0) {
     n = int(g.size());
     d.assign(n, 0);
     dfn.assign(n, -1);
     siz.assign(n, 0);
+    fa.assign(n, -1);
+
+    if (weighted) {
+      len.assign(n, 0);
+    }
 
     int idx = 0;
     std::vector<std::pair<int, int>> a;
     a.reserve(n);
 
     auto dfs = [&](auto &dfs, int u, int p) -> void {
+      fa[u] = p;
       siz[u] = 1;
       dfn[u] = idx++;
       if (p == -1)
@@ -41,9 +58,14 @@ struct fastlca {
       else
         a.push_back(std::make_pair(dfn[p], p));
 
-      for (auto v : g[u]) {
+      for (auto cur : g[u]) {
+        int v = get<0>(cur);
         if (v != p) {
           d[v] = d[u] + 1;
+          if (weighted) {
+            int w = get<1>(cur);
+            len[v] = len[u] + w;
+          }
           dfs(dfs, v, u);
           siz[u] += siz[v];
         }
@@ -83,7 +105,14 @@ struct fastlca {
     return lca(a, b) ^ lca(a, c) ^ lca(b, c);
   }
 
-  int distance(int a, int b) const { return d[a] + d[b] - d[lca(a, b)] * 2; }
+  int64_t distance(int a, int b) const {
+    int c = lca(a, b);
+    if (!weighted) {
+      return d[a] + d[b] - d[c] * 2;
+    } else {
+      return len[a] + len[b] - len[c] * 2;
+    }
+  }
 
   std::pair<int, int> intersection(int a, int b, int c, int d) const {
     int ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);
@@ -103,6 +132,24 @@ struct fastlca {
   std::pair<int, int> intersection(std::pair<int, int> a,
                                    std::pair<int, int> b) const {
     return intersection(a.first, a.second, b.first, b.second);
+  }
+
+  std::vector<int> path(int a, int b) {
+    int c = lca(a, b);
+    std::vector<int> ac;
+    while (a != c) {
+      ac.push_back(a);
+      a = fa[a];
+    }
+    std::vector<int> bc;
+    while (b != c) {
+      bc.push_back(b);
+      b = fa[b];
+    }
+    std::vector<int> res = move(ac);
+    res.push_back(c);
+    res.insert(res.end(), bc.rbegin(), bc.rend());
+    return res;
   }
 };
 } // namespace noya
