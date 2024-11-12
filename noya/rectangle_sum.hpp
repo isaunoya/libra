@@ -8,8 +8,8 @@
 
 // @points(x, y, weight) @queries(l, r, d, u)
 template <class T, class C = noya::fenwick<T>>
-std::vector<T> rectangle_sum(std::vector<std::array<int, 3>> &points,
-                             std::vector<std::array<int, 4>> &queries) {
+std::vector<T> rectangle_sum(std::vector<std::array<int, 3>> points,
+                             std::vector<std::array<int, 4>> queries) {
   std::vector<int> Xs;
   std::vector<int> Ys;
   for (auto &[x, y, z] : points) {
