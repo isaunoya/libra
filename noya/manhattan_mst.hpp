@@ -1,7 +1,7 @@
 #ifndef NOYA_MANHATTAN_MST_HPP
 #define NOYA_MANHATTAN_MST_HPP 1
 
-#include "noya/mst.hpp"
+#include "noya/minimum_spanning_tree.hpp"
 
 #include <algorithm>
 #include <map>
