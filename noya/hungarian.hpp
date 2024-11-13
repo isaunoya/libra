@@ -6,6 +6,8 @@
 #include <vector>
 
 namespace noya {
+
+// @(res, match, X, Y)
 template <typename T, bool MINIMIZE>
 std::tuple<T, std::vector<int>, std::vector<T>, std::vector<T>>
 hungarian(std::vector<std::vector<T>> &C) {
