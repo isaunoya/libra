@@ -67,7 +67,7 @@ template <class T> struct Persistent_segtree {
   T query_single(int p, int l, int r, int x) {
     if (!p)
       return 0;
-    
+
     if (l + 1 == r)
       return sum[p];
 
@@ -115,7 +115,12 @@ template <class T> struct Persistent_segtree {
     assert(0 <= l && l <= r && r <= N);
     assert(0 <= d && d <= u && u <= M);
 
-    return query(rt[l], rt[r], d, u, 0, M);
+    if (l == r)
+      return 0;
+    else if (d == u)
+      return 0;
+    else
+      return query(rt[l], rt[r], d, u, 0, M);
   }
 
   T kth(T l, T r, T k) {
@@ -137,6 +142,9 @@ template <class T> struct Persistent_segtree {
     ls.assign(C, 0);
     rs.assign(C, 0);
     sum.assign(C, 0);
+
+    Xs.clear();
+    Ys.clear();
 
     for (auto &[x, y, w] : points) {
       Xs.push_back(x);
