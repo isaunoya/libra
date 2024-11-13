@@ -32,7 +32,7 @@ using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 template <class T> using vc = vector<T>;
 const int INF = 1010000000;
-const ll LNF = 1010000000000000000;
+const ll LNF = 2020000000000000000;
 #define sz(x) int((x).size())
 #define all(x) begin(x), end(x)
 #define fi first
