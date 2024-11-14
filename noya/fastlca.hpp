@@ -33,17 +33,36 @@ struct fastlca {
   };
 
   template <class T>
-  void build(const std::vector<std::vector<T>> &g = {},
-             const bool &weighted = false, const int &root = 0) {
+  void build(const std::vector < std::vector<T>> & g, const int &root = 0) {
+    n = int(g.size());
+    std::vector<std::vector<int>> g2(n);
+
+    for (int u = 0; u < n; u++) {
+      for (auto &[v, w] : g[u]) {
+        g2[u].push_back(v);
+      }
+    }
+    build(g2, root);
+
+    len.assign(n, 0);
+    auto dfs = [&](auto &dfs, int u) -> void {
+      for (auto &[v, w] : g[u]) {
+        if (v == fa[u])
+          continue;
+        len[v] = len[u] + w;
+        dfs(dfs, v);
+      }
+    };
+
+    dfs(dfs, root);
+  }
+
+  void build(const std::vector<std::vector<int>> &g = {}, const int &root = 0) {
     n = int(g.size());
     d.assign(n, 0);
     dfn.assign(n, -1);
     siz.assign(n, 0);
     fa.assign(n, -1);
-
-    if (weighted) {
-      len.assign(n, 0);
-    }
 
     int idx = 0;
     std::vector<std::pair<int, int>> a;
@@ -58,14 +77,9 @@ struct fastlca {
       else
         a.push_back(std::make_pair(dfn[p], p));
 
-      for (auto cur : g[u]) {
-        int v = get<0>(cur);
+      for (auto &v : g[u]) {
         if (v != p) {
           d[v] = d[u] + 1;
-          if (weighted) {
-            int w = get<1>(cur);
-            len[v] = len[u] + w;
-          }
           dfs(dfs, v, u);
           siz[u] += siz[v];
         }
