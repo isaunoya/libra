@@ -1,13 +1,14 @@
 #ifndef NOYA_DEBUG_HPP
 #define NOYA_DEBUG_HPP 1
 
-#include <tuple>
-#include <string>
-#include <ranges>
-#include <utility>
-#include <ostream>
-#include <sstream>
+#include <atcoder/modint.hpp>
 #include <iostream>
+#include <ostream>
+#include <ranges>
+#include <sstream>
+#include <string>
+#include <tuple>
+#include <utility>
 
 template <class T, size_t size = std::tuple_size<T>::value>
 std::string to_debug(T, std::string s = "")
@@ -17,6 +18,13 @@ std::string to_debug(auto x)
 {
   return static_cast<std::ostringstream>(std::ostringstream() << x).str();
 }
+template <typename T>
+std::string to_debug(T x)
+  requires std::is_base_of_v<atcoder::internal::modint_base, T>
+{
+  return std::to_string(x.val());
+}
+
 std::string to_debug(std::ranges::range auto x, std::string s = "")
   requires(not std::is_same_v<decltype(x), std::string>)
 {
@@ -34,6 +42,7 @@ std::string to_debug(T x, std::string s)
   }(std::make_index_sequence<size>());
   return "(" + s.substr(s.empty() ? 0 : 2) + ")";
 }
-#define debug(...) std::cerr << "[" #__VA_ARGS__ "] = " << to_debug(tuple(__VA_ARGS__)) << "\n"
+#define debug(...)                                                             \
+  std::cerr << "[" #__VA_ARGS__ "] = " << to_debug(tuple(__VA_ARGS__)) << "\n"
 
 #endif // NOYA_DEBUG_HPP
