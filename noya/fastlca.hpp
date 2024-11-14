@@ -29,11 +29,11 @@ struct fastlca {
           const int &root = 0) {
     weighted = _weighted;
     if (!g.empty())
-      build(g, weighted, root);
+      build(g, root);
   };
 
   template <class T>
-  void build(const std::vector < std::vector<T>> & g, const int &root = 0) {
+  void build(const std::vector<std::vector<T>> &g, const int &root = 0) {
     n = int(g.size());
     std::vector<std::vector<int>> g2(n);
 
