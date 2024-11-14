@@ -65,4 +65,4 @@ std::vector<std::vector<std::pair<T, int>>> get_suffix_values(const std::vector<
 
 } // namespace noya
 
-#endif // NOYA_GCD_MINTANANCE
+#endif // NOYA_GCD_MINTANANCE_HPP
