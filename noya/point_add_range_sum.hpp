@@ -8,6 +8,8 @@
 namespace noya {
 template <class T> struct block {
   int V, sqrtV;
+
+  block() {}
   block(const int &_V) {
     if (_V > 0) {
       build(_V);
@@ -29,7 +31,7 @@ template <class T> struct block {
     point[x] += v;
   }
 
-  T query(int x) {
+  T query(int x) const {
     assert(0 <= x && x <= V);
     T res = 0;
     int bel = x / sqrtV;
@@ -42,7 +44,7 @@ template <class T> struct block {
     return res;
   }
 
-  T prod(int l, int r) {
+  T prod(int l, int r) const {
     assert(0 <= l && l <= r && r <= V);
     return query(r) - query(l);
   }
@@ -51,8 +53,8 @@ template <class T> struct block {
 template <class T> struct fenwick : atcoder::fenwick_tree<T> {
   using atcoder::fenwick_tree<T>::fenwick_tree;
   using atcoder::fenwick_tree<T>::add;
-  T query(int x) { return this->sum(x); }
-  T prod(int l, int r) { return this->sum(l, r); }
+  T query(int x) const { return this->sum(x); }
+  T prod(int l, int r) const { return this->sum(l, r); }
 };
 
 } // namespace noya
