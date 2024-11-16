@@ -53,8 +53,8 @@ template <class T> struct block {
 template <class T> struct fenwick : atcoder::fenwick_tree<T> {
   using atcoder::fenwick_tree<T>::fenwick_tree;
   using atcoder::fenwick_tree<T>::add;
-  T query(int x) const { return this->sum(x); }
-  T prod(int l, int r) const { return this->sum(l, r); }
+  T query(int x) { return this->sum(x); }
+  T prod(int l, int r) { return this->sum(l, r); }
 };
 
 } // namespace noya
