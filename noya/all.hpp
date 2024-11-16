@@ -1,4 +1,4 @@
-#include "noya/head.hpp" 
+#include "noya/head.hpp"
 
 #include "atcoder/internal_queue.hpp"
 #include "atcoder/fenwicktree.hpp"
