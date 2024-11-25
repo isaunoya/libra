@@ -1,4 +1,9 @@
-#include "noya/debug.hpp"
+#if defined(local)
+#include "./noya/debug.hpp"
+#else
+#define debug(...) 42
+#endif
+
 #include <algorithm>
 #include <array>
 #include <bitset>
