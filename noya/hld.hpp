@@ -75,6 +75,7 @@ struct HLD {
     top.assign(n, -1);
     d.assign(n, 0);
     fa.assign(n, 0);
+    d[root] = 1;
     dfs(root, -1);
     idx = 0;
     dfs2(root, root);
