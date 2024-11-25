@@ -12,15 +12,15 @@ template <class T, class S> struct hash_array {
   std::vector<T> H;
   std::vector<T> pw;
   const T base = T(base_t);
-  hash_array(std::vector<S> &a) { build(a); }
-  hash_array(std::string &a) {
+  hash_array(const std::vector<S> &a) { build(a); }
+  hash_array(const std::string &a) {
     std::vector<S> a0(a.begin(), a.end());
     build(a0);
   }
   hash_array() {}
 
-  void build(std::vector<S> &a) {
-    n = (int)a.size();
+  void build(const std::vector<S> &a) {
+    n = int(a.size());
     H.resize(n + 1);
     for (int i = 0; i < n; i++) {
       H[i + 1] = H[i] * base + T(a[i]);
@@ -31,9 +31,13 @@ template <class T, class S> struct hash_array {
       pw[i + 1] = pw[i] * base;
     }
   }
+  void build(const std::string &a) {
+    std::vector<S> a0(a.begin(), a.end());
+    build(a0);
+  }
 
   // [l, r)
-  T prod(int l, int r) {
+  T prod(int l, int r) const {
     assert(0 <= l && l <= r && r <= n);
     T X = H[r] - H[l] * pw[r - l];
     return X;
@@ -45,21 +49,26 @@ template <class A, class B, class S> struct double_hash_array {
 
   hash_array<A, S> A_hash_array;
   hash_array<B, S> B_hash_array;
-  double_hash_array(std::vector<S> &a) { build(a); }
+
+  double_hash_array(const std::vector<S> &a) { build(a); }
   double_hash_array() {}
-  double_hash_array(std::string &a) {
+  double_hash_array(const std::string &a) {
     std::vector<S> a0(a.begin(), a.end());
     build(a0);
   }
 
-  void build(std::vector<S> &a) {
-    n = (int)a.size();
+  void build(const std::vector<S> &a) {
+    n = int(a.size());
     A_hash_array.build(a);
     B_hash_array.build(a);
   }
+  void build(const std::string &a) {
+    std::vector<S> a0(a.begin(), a.end());
+    build(a0);
+  }
 
-  std::pair<A, B> prod(int l, int r) {
-    return make_pair(A_hash_array.prod(l, r), B_hash_array.prod(l, r));
+  std::pair<A, B> prod(int l, int r) const {
+    return std::make_pair(A_hash_array.prod(l, r), B_hash_array.prod(l, r));
   }
 };
 }; // namespace noya
@@ -97,6 +106,22 @@ template <class T> int lcs(T &A, int i, T &B, int j) {
       r = m;
   }
   return l;
+}
+
+template <class T> bool same(T &A, int l1, int r1, T &B, int l2, int r2) {
+  int n1 = r1 - l1;
+  int n2 = r2 - l2;
+  
+  assert(0 <= l1 && l1 <= r1 && r1 <= n1);
+  assert(0 <= l2 && l2 <= r2 && r2 <= n2);
+
+  if (n1 != n2)
+    return false;
+  int lc = lcp(A, l1, B, l2);
+  if (lc == n1)
+    return true;
+  else
+    return false;
 }
 
 #endif // NOYA_ROLLINGHASH_HPP
