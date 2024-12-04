@@ -15,6 +15,7 @@ template <class T> struct consective_segment {
   }
 
   // assign [l, r) = v
+  // return the origin segments @([l, r), v)
   std::vector<std::tuple<int, int, T>> assign(int l, int r, T v) {
     split(l);
     split(r);
