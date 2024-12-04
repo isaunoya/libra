@@ -1,8 +1,9 @@
 #ifndef NOYA_CHT_HPP
 #define NOYA_CHT_HPP 1
 
+#include "noya/limit.hpp"
+#include <cassert>
 #include <map>
-#include <noya/limit.hpp>
 #include <set>
 #include <vector>
 
