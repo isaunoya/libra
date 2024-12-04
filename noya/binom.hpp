@@ -24,13 +24,13 @@ template <class T> struct binom {
 
   T fact(int n) {
     if (n >= int(fac.size()))
-      prepare(n);
+      prepare(n * 2);
     return fac[n];
   }
 
   T ifact(int n) {
     if (n >= int(ifac.size()))
-      prepare(n);
+      prepare(n * 2);
     return ifac[n];
   }
 
