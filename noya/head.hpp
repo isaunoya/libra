@@ -31,13 +31,28 @@ using vl = vector<ll>;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 template <class T> using vc = vector<T>;
-const int INF = 1010000000;
-const ll LNF = 2020000000000000000;
+const int INF = noya::infty<int>;
+const ll LNF = noya::infty<ll>;
 #define sz(x) int((x).size())
 #define all(x) begin(x), end(x)
 #define fi first
 #define se second
 
-namespace noya {}
+namespace noya {
+
+template <class T> vc<pair<T, int>> compress(const vc<T> &S) {
+  int N = sz(S);
+  vc<pair<T, int>> ret;
+  for (int i = 0, j = 0; i < N; i = j) {
+    while (j < N && S[i] == S[j])
+      j++;
+    ret.push_back({S[i], j - i});
+  }
+  return ret;
+}
+
+vc<pii> compress(const string &S) { return compress(vi(S.begin(), S.end())); }
+
+} // namespace noya
 
 #endif // NOYA_HEAD_HPP

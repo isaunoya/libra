@@ -166,16 +166,37 @@ template <class T> struct Persistent_segtree {
 
     M = int(Ys.size());
     rt.assign(N + 1, 0);
+    
+    rt[0] = cnt++;
     for (int i = 0; i < N; i++) {
       rt[i + 1] = rt[i];
       for (auto &[y, w] : add[i]) {
-        int new_rt = -1;
+        int new_rt = 0;
         update(rt[i + 1], new_rt, 0, M, y, w);
         rt[i + 1] = new_rt;
       }
     }
 
     std::vector<std::vector<std::array<T, 2>>>().swap(add);
+  }
+  // @(ls, rs, len, value)
+  std::vector<std::array<int, 4>> all_nodes() {
+    std::vector<std::array<int, 4>> nodes(cnt, std::array<int, 4>{});
+    std::vector<bool> vis(cnt);
+    vis[0] = true;
+    for (int i = 0; i <= N; i++) {
+      auto dfs = [&](auto &dfs, int p, int l, int r) -> void {
+        if (vis[p])
+          return;
+        vis[p] = true;
+        nodes[p] = {ls[p], rs[p], r - l, sum[p]};
+        int m = (l + r) / 2;
+        dfs(dfs, ls[p], l, m);
+        dfs(dfs, rs[p], m, r);
+      };
+      dfs(dfs, rt[i], 0, M);
+    }
+    return nodes;
   }
 };
 } // namespace noya
