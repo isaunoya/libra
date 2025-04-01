@@ -100,7 +100,7 @@ struct HLD {
     return d[x] < d[y] ? x : y;
   }
 
-  // @(l, r, dir), dir=0 indicates x->lca
+  // @(l, r, dir), dir=0 indicates x->lca (need reverse info)
   std::vector<std::tuple<int, int, bool>> chain(int x, int y) const {
     assert(0 <= x && x < n);
     assert(0 <= y && y < n);
