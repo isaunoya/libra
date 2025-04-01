@@ -1,7 +1,8 @@
 #ifndef NOYA_FASTLCA_HPP
 #define NOYA_FASTLCA_HPP 1
 
-#include <noya/sparsetable.hpp>
+#include "noya/sparsetable.hpp"
+#include "noya/limit.hpp"
 
 #include <algorithm>
 #include <functional>

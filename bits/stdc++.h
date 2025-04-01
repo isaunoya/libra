@@ -9,6 +9,7 @@
 #include <bitset>
 #include <cassert>
 #include <chrono>
+#include <climits>
 #include <cmath>
 #include <complex>
 #include <cstring>

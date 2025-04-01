@@ -1,7 +1,9 @@
 #ifndef NOYA_DEBUG_HPP
 #define NOYA_DEBUG_HPP 1
 
-#include <atcoder/modint.hpp>
+#include "atcoder/modint.hpp"
+#include "noya/bitset.hpp"
+
 #include <iostream>
 #include <ostream>
 #include <ranges>
@@ -25,6 +27,11 @@ std::string to_debug(T x)
   return std::to_string(x.val());
 }
 
+std::string to_debug(noya::Bitset x)
+{
+  return noya::to_string(x);
+}
+
 std::string to_debug(std::ranges::range auto x, std::string s = "")
   requires(not std::is_same_v<decltype(x), std::string>)
 {
@@ -43,6 +50,6 @@ std::string to_debug(T x, std::string s)
   return "(" + s.substr(s.empty() ? 0 : 2) + ")";
 }
 #define debug(...)                                                             \
-  std::cerr << "[" #__VA_ARGS__ "] = " << to_debug(tuple(__VA_ARGS__)) << "\n"
+  std::cerr << "[" #__VA_ARGS__ "] = " << to_debug(std::tuple(__VA_ARGS__)) << "\n"
 
 #endif // NOYA_DEBUG_HPP
